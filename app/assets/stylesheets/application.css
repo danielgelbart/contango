@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+body {
+    background-color: #fff; 
+    color: #333; 
+    margin:50px 0px; padding:0px; /* Need to set body margin and padding to get consistency between browsers. */
+    text-align:center; /* Hack for IE5/Win */
+}
+
+#container {
+    width:1000px;
+    margin:0px auto; /* Right and left margin widths set to "auto" */
+    text-align:left; /* Counteract to IE5/Win Hack */
+    padding:15px;
+}
