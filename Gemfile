@@ -43,5 +43,6 @@ gem 'spring',        group: :development
 # recomended by heruko
 gem 'rails_12factor', group: :production
 
+#gem "paperclip", "~> 4.2"
 
 gem "nokogiri"

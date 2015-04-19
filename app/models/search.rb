@@ -2,9 +2,9 @@ class Search < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
-  def download_to_local(url)
+  def download_to_local(url,filname)
     #what do we recieve here?
-    open("statements/#{ticker}_#{year}.xlsx","wb") do |file|
+    open("public#{filname}","wb") do |file|
       file << open(url).read
     end
   end
@@ -44,9 +44,9 @@ class Search < ActiveRecord::Base
 
     xl_url = "http://www.sec.gov/Archives/edgar/data/#{stock.cik}/#{acn}/Financial_Report.xlsx"
 
-    download_to_local(xl_url)
+    filname = "/statements/#{ticker}_#{year}.xlsx"
+    download_to_local(xl_url,filname)
 
-    # save file?
-    return xl_url
+    return filname
   end
 end
