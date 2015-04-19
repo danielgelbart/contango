@@ -21,8 +21,15 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
+# yeah, thats right. fuck postgres
 development:
-  <<: *default
+  adapter: mysql
+  username: root
+  password: 
+  encoding: utf8
+  timeout: 5000
+  socket: /var/run/mysqld/mysqld.sock
+#  <<: *default
   database: contango_development
 
   # The specified database role being used to connect to postgres.

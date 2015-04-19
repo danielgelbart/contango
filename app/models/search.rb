@@ -2,6 +2,14 @@ class Search < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
+  def download_to_local(url)
+    #what do we recieve here?
+    open("statements/#{ticker}_#{year}.xlsx","wb") do |file|
+      file << open(url).read
+    end
+  end
+
+
   def generate_link
     # NOTE - we don't even need the stock.cik since we can get this from the ticker and follow through the edgar site...
     stock = Stock.find_by_ticker(self.ticker)
@@ -35,6 +43,8 @@ class Search < ActiveRecord::Base
     return "--" if (acn == "")
 
     xl_url = "http://www.sec.gov/Archives/edgar/data/#{stock.cik}/#{acn}/Financial_Report.xlsx"
+
+    download_to_local(xl_url)
 
     # save file?
     return xl_url
