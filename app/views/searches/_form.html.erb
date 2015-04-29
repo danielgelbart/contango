@@ -10,20 +10,17 @@
       </ul>
     </div>
   <% end %>
-
+  <p> Enter </p>
   <div class="field">
-    <%= f.label :ticker %><br>
-    <%= f.text_field :ticker %>
+    <%= f.label :ticker %>
+<%= f.collection_select :ticker, Stock.order(:ticker),:id,:ticker, include_blank: true %>
   </div>
+  <p> Or (company name)</p>
   <div class="field">
-    <%= f.label :year %><br>
-    <%= f.number_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :filing %><br>
-    <%= f.number_field :filing %>
+    <%= f.label :year %>
+    <%= f.select :year, options_for_select(2014..1983) %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Get Spreadsheet"%>
   </div>
 <% end %>
