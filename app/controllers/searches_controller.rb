@@ -19,10 +19,6 @@ class SearchesController < ApplicationController
     @search = Search.new
   end
 
-  # GET /searches/1/edit
-  def edit
-  end
-
   # POST /searches
   # POST /searches.json
   def create
@@ -50,16 +46,6 @@ class SearchesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @search.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /searches/1
-  # DELETE /searches/1.json
-  def destroy
-    @search.destroy
-    respond_to do |format|
-      format.html { redirect_to searches_url, notice: 'Search was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
