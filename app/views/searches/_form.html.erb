@@ -10,17 +10,18 @@
       </ul>
     </div>
   <% end %>
-  <p> Enter </p>
+  <p> Search by  </p>
   <div class="field">
     <%= f.label :ticker %>
-<%= f.collection_select :ticker, Stock.order(:ticker),:id,:ticker, include_blank: true %>
+    <%= f.collection_select(:ticker, Stock.order(:ticker), :ticker, :ticker, selected: 'IBM') %>
   </div>
-  <p> Or (company name)</p>
+  <p> OR (company name)</p>
   <div class="field">
-    <%= f.label :year %>
-    <%= f.select :year, options_for_select(2014..1983) %>
+    <%= f.label :for_year %>
+    <%= f.select(:year, options_for_select((2014.downto(1983)).to_a.map{|s|
+    [s, s]}, selected:2014) ) %>
   </div>
   <div class="actions">
-    <%= f.submit "Get Spreadsheet"%>
+    <%= f.submit "Get Spreadsheet!"%>
   </div>
 <% end %>

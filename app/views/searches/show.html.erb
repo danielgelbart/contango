@@ -1,24 +1,21 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><% notice %></p>
 
-<p>
-  <strong>Ticker:</strong>
-  <%= @search.ticker %>
-</p>
-
-<p>
-  <strong>Year:</strong>
-  <%= @search.year %>
-</p>
-
-<p>
-  <strong>Filing:</strong>
-  <%= @search.filing %>
-</p>
-
-<p>
-  <%= link_to 'Download Link', @down_link %>
-</p>
-
-
-<%= link_to 'Edit', edit_search_path(@search) %> |
-<%= link_to 'Back', searches_path %>
+<div>
+  <%- if @down_link == "--"%>
+  <p>
+    Sorry, we can't get  
+    <strong>Ticker:</strong>
+    <%= @search.ticker %> for <%= @search.year %>
+    <p>Please try again later, or contact us, and we will try to help.</p>
+  </p>
+  <%- else %>
+  <p>
+    Found Spreadsheet for 
+    <strong>Ticker:</strong>
+    <%= @search.ticker %> for <%= @search.year %>
+  </p>
+  <p>
+    <%= link_to 'Click to Download', @down_link %>
+  </p>
+  <%- end %>
+<%= link_to 'Get another Spreadsheet', new_search_path %>
