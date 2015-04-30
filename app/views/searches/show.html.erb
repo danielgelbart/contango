@@ -14,8 +14,9 @@
     <strong>Ticker:</strong>
     <%= @search.ticker %> for <%= @search.year %>
   </p>
-  <p>
-    <%= link_to 'Click to Download', @down_link %>
-  </p>
+    <%= link_to 'Click to Download', @down_link, class:'download-button' %>
+  </br>
+  </br>
+  </br>
   <%- end %>
 <%= link_to 'Get another Spreadsheet', new_search_path %>

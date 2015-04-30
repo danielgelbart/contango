@@ -13,7 +13,8 @@
   <p> Search by  </p>
   <div class="field">
     <%= f.label :ticker %>
-    <%= f.collection_select(:ticker, Stock.order(:ticker), :ticker, :ticker, selected: 'IBM') %>
+    <%= f.collection_select(:ticker, Stock.order(:ticker), :ticker,
+    :ticker, selected:'IBM' ) %>
   </div>
   <p> OR (company name)</p>
   <div class="field">
