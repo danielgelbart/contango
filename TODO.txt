@@ -1,0 +1,4 @@
+1) catch error pages from going back to user
+2) delete local downloaded files from time to time
+3) Make nicer css
+4) Add search by company name
