@@ -51,4 +51,7 @@ gem "nokogiri"
 
 group :development, :test do
   gem 'foreman'
-end 
+end
+
+gem 'mail_form'
+gem 'simple_form' 

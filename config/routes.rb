@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   root 'searches#new'
   get 'excel_statements' => 'searches#new'
 
+  #for contact form
+  get '/contact' => 'contacts#new'
+  resources "contacts", only: [:new, :create]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
