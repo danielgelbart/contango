@@ -1,7 +1,7 @@
-<h3>Send A message to Us</h3>
+<h3>Please let us know what you think - Send us a message</h3>
 <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
   <%= f.input :name, :required => true %>
-  <%= f.input :email, :required => true %>
+  Email(optional)<%= f.text_field :email %>
   <%= f.input :title, :required => true %>
   <%= f.input :message, :as => :text, :required => true %>
   <div class= "hidden">
