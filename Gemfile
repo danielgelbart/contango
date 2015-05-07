@@ -48,3 +48,7 @@ gem 'rails_12factor', group: :production
 #gem "paperclip", "~> 4.2"
 
 gem "nokogiri"
+
+group :development, :test do
+  gem 'foreman'
+end 

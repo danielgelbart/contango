@@ -1,22 +1,15 @@
 <p id="notice"><% notice %></p>
-
-<div>
+<div class="row center">
   <%- if @down_link == "--"%>
-  <p>
-    Sorry, we can't get  
-    <strong>Ticker:</strong>
+    Sorry, we couldn't get the statement for 
     <%= @search.ticker %> for <%= @search.year %>
-    <p>Please try again later, or contact us, and we will try to help.</p>
-  </p>
+    Please try again later, or contact us, and we will try to help.
   <%- else %>
-  <p>
     Found Spreadsheet for 
-    <strong>Ticker:</strong>
-    <%= @search.ticker %> for <%= @search.year %>
-  </p>
+    <%= @search.ticker %> for <%= @search.year %> :
     <%= link_to 'Download', @down_link, class:'download-button' %>
-  </br>
-  </br>
-  </br>
   <%- end %>
-<%= link_to 'Get another Spreadsheet', new_search_path %>
+</div>
+<div class="row center">
+  <%= link_to 'Get another Spreadsheet', excel_statements_path %>
+</div>

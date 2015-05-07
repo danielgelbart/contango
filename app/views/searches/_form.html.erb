@@ -2,7 +2,6 @@
   <% if @search.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>
-
       <ul>
       <% @search.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,20 +10,24 @@
     </div>
   <% end %>
   <div id="search-form-body"> 
-    <p>Search by  </p>
-    <div class="field">
-      <%= f.label :ticker %>
+    <div class="row center"> 
+      <div class= "col-xs">Search by: 
+      </div>
+    </div>
+    <div class="row center">
+      <%= "Ticker " %>
       <%= f.collection_select(:ticker, Stock.order(:ticker), :ticker,
-                                           :ticker, selected:'IBM' ) %>
+                                             :ticker, selected:'IBM' ) %>
     </div>
-    <p> OR (company name)</p>
-    <div class="field">
-      <%= f.label :for_year %>
-      <%= f.select(:year, options_for_select((2014.downto(1983)).to_a.map{|s|
+    <div class="row center">
+      <div class="col-xs">
+         <%= "for year " %>
+         <%= f.select(:year, options_for_select((2014.downto(1983)).to_a.map{|s|
                                            [s, s]}, selected:2014) ) %>
+      </div>
     </div>
-    <div class="actions">
-      <%= f.submit "Get Spreadsheet!"%>
+    <div class="row actions center">
+      <%= f.submit "Get the Spreadsheet!"%>
     </div>
   </div>
 <% end %>

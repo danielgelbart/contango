@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :searches
-
   resources :stocks
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'searches#new'
+  get 'excel_statements' => 'searches#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
