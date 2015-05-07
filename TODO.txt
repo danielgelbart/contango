@@ -1,4 +1,9 @@
+1.0) Setup new email designated for site
+1.1) Make css better for
+  - search form
+  - contact form
+  - footer
 1) catch error pages from going back to user
-2) delete local downloaded files from time to time
-3) Make nicer css
+2) delete local downloaded files from when memory exceeds *** (start
+from oldest)
 4) Add search by company name

@@ -16,9 +16,14 @@ rake db:seed
 --
 
 * Services (job queues, cache servers, search engines, etc.)
-
+- Using forman:
+  $ foreman start
 
 * Deployment instructions
+- asset pipeline activated for development env
+  To see changes to css run
+  $ rake assets:precompile
+  and restart server
 
 
 

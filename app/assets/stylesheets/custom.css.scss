@@ -8,6 +8,13 @@ $heading-font-family: "PT Serif", "Georgia", "Helvetica Neue", Arial, sans-serif
 $header-title-font-family: $heading-font-family !default;
 $header-subtitle-font-family: $heading-font-family !default;
 
+@mixin centeralize {
+    width:1000px;
+    margin:0px auto; /* Right and left margin widths set to "auto" */
+    text-align:left; /* Counteract to IE5/Win Hack */
+    padding:15px; 
+}
+
 body {
     background-color: #fff; 
     color: #333; 
@@ -15,15 +22,17 @@ body {
     text-align:center; /* Hack for IE5/Win */ 
     font-size: 1.7em;
     line-height: 1.7em;
-    padding-top: 60px;
+    /* padding-top: 60px; */
     font-family: $sans;
 }
 
 #container {
-    width:1000px;
-    margin:0px auto; /* Right and left margin widths set to "auto" */
-    text-align:left; /* Counteract to IE5/Win Hack */
-    padding:15px;
+    @include centeralize;       
+}
+
+#search-form-body {
+   font-size: 1.7em;
+   line-height: 1.7em;
 }
 
 section {
@@ -42,9 +51,13 @@ textarea {
   margin-bottom: 10px;
 }
 
+.contact {
+   font-weight: bolder;
+   font-style: oblique;      
+   color: #005C00;
+}
+
 /* typography */
-
-
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -65,6 +78,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
+  font-style: italic; 
   color: $gray-light;
 }
 
@@ -94,8 +108,9 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  border-top: 2px solid #eaeaea;
   color: $gray-light;
+  font-size: 1.4em;
   a {
     color: #555;
     &:hover {
