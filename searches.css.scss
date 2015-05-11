@@ -1,0 +1,32 @@
+// Place all the styles related to the Searches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+input[type=submit] {
+  padding:5px 15px; background:#ccc; border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+    &:hover{ border: 1px solid #999; background:#C6A6F6;}
+}
+
+a.download-button {
+  background: #FFD633;
+  color: #000;
+  border: 1px solid #eee;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  font-size: 25px;
+  box-shadow: 5px 5px 5px #eee;
+}
+a.download-button:hover {
+  background: #E6C12E;
+  color: #000;
+  border: 1px solid #eee;
+  -webkit-border-radius: 35px;
+  border-radius: 35px;
+  box-shadow: 5px 5px 5px #eee;
+}
+
+
+

@@ -12,28 +12,24 @@ $header-subtitle-font-family: $heading-font-family !default;
     width:1000px;
     margin:0px auto; /* Right and left margin widths set to "auto" */
     text-align:left; /* Counteract to IE5/Win Hack */
-    padding:15px; 
+    padding-top: 60px;
 }
-
+/*
 body {
     background-color: #fff; 
     color: #333; 
-    margin:50px 0px; padding:0px; /* Need to set body margin and padding to get consistency between browsers. */
-    text-align:center; /* Hack for IE5/Win */ 
-    font-size: 1.7em;
-    line-height: 1.7em;
-    /* padding-top: 60px; */
+    margin:50px 0px; padding:0px; /* Need to set body margin and padding to get consistency between browsers. 
+    text-align:center; /* Hack for IE5/Win
+    /* font-size: 1.7em; 
+    /* line-height: 1.7em;
+    /* padding-top: 60px;
     font-family: $sans;
 }
-
+*/
 #container {
     @include centeralize;       
 }
 
-#search-form-body {
-   font-size: 1.7em;
-   line-height: 1.7em;
-}
 
 section {
   overflow: auto;
@@ -54,7 +50,7 @@ textarea {
 .contact {
    font-weight: bolder;
    font-style: oblique;      
-   color: #005C00;
+   color: green; /* #005C00; */
 }
 
 /* typography */

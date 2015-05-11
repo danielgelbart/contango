@@ -1,4 +1,5 @@
-<%= form_for(@search) do |f| %>
+<%= form_for(@search,  :html => { class: 'form-horizontal'} ) do |f| %>
+<fieldset>  
   <% if @search.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>
@@ -10,24 +11,26 @@
     </div>
   <% end %>
   <div id="search-form-body"> 
-    <div class="row center"> 
-      <div class= "col-xs">Search by: 
+    <legend> Search for any company's annual report</legend>
+    <div class="form-group "> 
+      <label class="col-xs-5 control-label">Ticker</label> 
+      <div class="col-xs-7">
+        <%= f.collection_select(:ticker, Stock.order(:ticker), :ticker,
+                                             :ticker, selected:'IBM' ) %>
+       <p class="help-block">Select company</p>
       </div>
     </div>
-    <div class="row center">
-      <%= "Ticker " %>
-      <%= f.collection_select(:ticker, Stock.order(:ticker), :ticker,
-                                             :ticker, selected:'IBM' ) %>
-    </div>
-    <div class="row center">
-      <div class="col-xs">
-         <%= "for year " %>
+    <div class="form-group "> 
+      <label class="col-xs-5 control-label">Year</label> 
+      <div class="col-xs-7">
          <%= f.select(:year, options_for_select((2014.downto(1983)).to_a.map{|s|
                                            [s, s]}, selected:2014) ) %>
+         <p class="help-block">Select year of annual report</p>
       </div>
     </div>
-    <div class="row actions center">
-      <%= f.submit "Get the Spreadsheet!"%>
+    <div class="actions center">
+      <%= f.submit "Get the Spreadsheet!", :class=> "btn btn-primary" %>
     </div>
   </div>
+</fieldset>  
 <% end %>

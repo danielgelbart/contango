@@ -7,7 +7,7 @@
   <%- else %>
     Found Spreadsheet for 
     <%= @search.ticker %> for <%= @search.year %> :
-    <%= link_to 'Download', @down_link, class:'download-button' %>
+    <%= link_to 'Download', @down_link, type:'button', class:'btn-success' %>
   <%- end %>
 </div>
 <div class="row center">
