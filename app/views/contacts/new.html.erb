@@ -8,10 +8,8 @@
   }  do |f| %>
 <fieldset>
   <legend>Let Us Know What You Think</legend>
-  <%= f.input :name, placeholder: 'Your name', :required => true,
-  :input_html => { maxlength:5, size:10 } %>
-  <%= f.input :email, placeholder: 'Enter email (optional)',
-:input_html => { maxlength:5, size:10 } %>
+  <%= f.input :name, placeholder: 'Your name', :required => true %>
+  <%= f.input :email, placeholder: 'Enter email (optional)' %>
   <%= f.input :title, placeholder: 'Message title', :required => true %>
   <%= f.input :message, :as => :text, :required => true %>
   <div class= "hidden">
