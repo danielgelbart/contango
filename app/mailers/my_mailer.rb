@@ -3,10 +3,10 @@ class MyMailer < ActionMailer::Base
 
   def contact_email(contact)
     @contact = contact
-    mail(:subject => "My Contact Form: #{contact.title}",
-         :to => ENV["GMAIL_USERNAME"],
-         :from => %("#{contact.name}" <#{contact.email}>)
-        )
+    mail( :subject => "My Contact Form: #{contact.title}",
+          :to => ENV["GMAIL_USERNAME"],
+          :from => %("#{contact.name}" <#{contact.email}>) )
+
   end
 
 end
