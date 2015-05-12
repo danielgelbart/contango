@@ -40,8 +40,14 @@ Rails.application.configure do
 
   # for testing mailer in development
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :smtp
+
+#  config.action_mailer.delivery_method = :smtp
+=begin
   config.action_mailer.smtp_settings = {
+    address: "localhost",
+    port: 25,
+    enable_starttls_auto: true
+
     address: "smtp.gmail.com",
     port: 587,
     domain: ENV["GMAIL_DOMAIN"],
@@ -49,5 +55,7 @@ Rails.application.configure do
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
+
   }
+=end
 end

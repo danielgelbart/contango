@@ -1,5 +1,5 @@
 <p id="notice"><% notice %></p>
-<div class="row center">
+<div class="results row center">
   <%- if @down_link == "--"%>
     Sorry, we couldn't get the statement for 
     <%= @search.ticker %> for <%= @search.year %>
@@ -10,6 +10,6 @@
     <%= link_to 'Download', @down_link, type:'button', class:'btn-success' %>
   <%- end %>
 </div>
-<div class="row center">
+<div class="results row center">
   <%= link_to 'Get another Spreadsheet', excel_statements_path %>
 </div>
