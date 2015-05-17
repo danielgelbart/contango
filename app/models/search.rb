@@ -1,14 +1,52 @@
+# == Schema Information
+#
+# Table name: searches
+#
+#  id         :integer          not null, primary key
+#  ticker     :string(255)
+#  year       :integer
+#  filing     :integer          default(0)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Search < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
-  def download_to_local(url,filname)
-    #what do we recieve here?
-    open("public#{filname}","wb") do |file|
-      file << open(url).read
+  def flip_x(string)
+    if string.last == "x"
+      return string.chop
+    else
+      return string+"x"
     end
   end
 
+  def download_to_local(url,filname)
+
+    begin
+      report = open(url).read
+    rescue
+      url = flip_x(url)
+      filname = flip_x(filname)
+      begin
+        report = open(url).read
+      rescue
+        return false
+      end
+    end
+
+    puts "url is "+url
+    puts "filname is "+filname
+    if report.size > 0
+      open("public#{filname}","wb") do |file|
+           file << report
+      end
+      return true
+    end
+
+    return false
+  end
 
   def generate_link
     # NOTE - we don't even need the stock.cik since we can get this from the ticker and follow through the edgar site...
@@ -42,11 +80,19 @@ class Search < ActiveRecord::Base
     # check that we succesfully got acn
     return "--" if (acn == "")
 
-    xl_url = "http://www.sec.gov/Archives/edgar/data/#{stock.cik}/#{acn}/Financial_Report.xlsx"
+    xl_url = "http://www.sec.gov/Archives/edgar/data/#{stock.cik}/#{acn}/Financial_Report.xls"
 
-    filname = "/statements/#{ticker}_#{year}.xlsx"
-    download_to_local(xl_url,filname)
+    filname = "/statements/#{ticker}_#{year}.xls"
 
-    return filname
+    if year >= 2014
+      xl_url += "x"
+      filname += "x"
+    end
+
+    if download_to_local(xl_url,filname)
+      return filname
+    end
+    return "--"
+
   end
 end

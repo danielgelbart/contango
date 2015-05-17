@@ -1,12 +1,12 @@
-<h1>Listing searches</h1>
+<h1>Searches</h1>
 
-<table>
+<table class="table-hover">
   <thead>
     <tr>
       <th>Ticker</th>
       <th>Year</th>
       <th>Filing</th>
-      <th colspan="3"></th>
+      <th>Time</th>
     </tr>
   </thead>
 
@@ -16,6 +16,7 @@
         <td><%= search.ticker %></td>
         <td><%= search.year %></td>
         <td><%= search.filing %></td>
+        <td><%= search.created_at %></td>
        </tr>
     <% end %>
   </tbody>
