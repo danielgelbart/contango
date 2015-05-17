@@ -23,3 +23,6 @@
 .env
 /.env
 Procfile
+
+#ignore downloaded local statements 
+/public/statements
