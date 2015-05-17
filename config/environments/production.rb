@@ -83,7 +83,7 @@ Rails.application.configure do
 
   # setting up mailer
   config.action_mailer.default_url_options = {
-    :host => 'publicsecurities.herokuapp.com' }
+    :host => 'publicsecurities.com' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
