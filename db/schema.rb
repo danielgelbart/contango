@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415130247) do
+ActiveRecord::Schema.define(version: 20150521090306) do
 
   create_table "searches", force: true do |t|
     t.string   "ticker"
     t.integer  "year"
-    t.integer  "filing",     default: 0
+    t.integer  "filing",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "file_found"
+    t.boolean  "file_downloaded"
+    t.string   "file_name"
   end
 
   create_table "stocks", force: true do |t|

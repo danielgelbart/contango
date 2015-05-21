@@ -11,7 +11,8 @@ class SearchesController < ApplicationController
   # GET /searches/1.json
   def show
     @search = Search.find(params[:id])
-    @down_link = @search.generate_link
+    # change this to generate file
+    @search.search_for_statement
   end
 
   # GET /searches/new

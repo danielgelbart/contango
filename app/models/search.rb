@@ -22,8 +22,8 @@ class Search < ActiveRecord::Base
     end
   end
 
-  def download_to_local(url,filname)
 
+  def download_to_local(url,filname)
     begin
       report = open(url).read
     rescue
@@ -35,24 +35,24 @@ class Search < ActiveRecord::Base
         return false
       end
     end
-
     puts "url is "+url
     puts "filname is "+filname
     if report.size > 0
-      open("public#{filname}","wb") do |file|
+      open("public/statements/#{filname}","wb") do |file|
            file << report
       end
+
       return true
     end
-
     return false
   end
 
-  def generate_link
+
+  def search_for_statement
     # NOTE - we don't even need the stock.cik since we can get this from the ticker and follow through the edgar site...
     stock = Stock.find_by_ticker(self.ticker)
 
-    return "--" if stock.nil?
+    return handle_bad_return if stock.nil?
 
     # get search for 10-k search results page
     search_url = "http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=#{stock.cik}&type=10-k&dateb=&owner=exclude&count=40"
@@ -78,21 +78,43 @@ class Search < ActiveRecord::Base
     end
 
     # check that we succesfully got acn
-    return "--" if (acn == "")
+    return handle_bad_return if (acn == "")
 
     xl_url = "http://www.sec.gov/Archives/edgar/data/#{stock.cik}/#{acn}/Financial_Report.xls"
 
-    filname = "/statements/#{ticker}_#{year}.xls"
+    filname = "#{ticker}_#{year}.xls"
 
     if year >= 2014
       xl_url += "x"
       filname += "x"
     end
 
-    if download_to_local(xl_url,filname)
+    success = false
+
+    #check if file already exists
+    if File.exist?( File.join(Rails.root,"public/statements",filname) )
+      success = true
+      puts "file found!!!!"
+    end
+
+    if (!success)
+      success = download_to_local(xl_url,filname)
+    end
+
+    # handle file download
+    if (success)
+      update( file_found: true, file_name: filname)
       return filname
     end
-    return "--"
 
+    # could not find file or download it
+    handle_bad_return
   end
+
+
+  def handle_bad_return
+    update_attribute( :file_found, false)
+    return "--"
+  end
+
 end

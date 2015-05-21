@@ -7,7 +7,8 @@
   <%- else %>
     Found Spreadsheet for 
     <%= @search.ticker %> for <%= @search.year %> :
-    <%= link_to 'Download', @down_link, type:'button', class:'btn-success' %>
+    <%= link_to 'Download', { :controller => "downloads", :action =>
+    "download_statement", :search_id => @search.id}, type:'button', class:'btn-success' %>
   <%- end %>
 </div>
 <div class="results row center">

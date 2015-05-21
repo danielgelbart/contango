@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'downloads/download_statement' # :search_id => search.id
+
   resources :searches
   resources :stocks
 

@@ -5,18 +5,30 @@
     <tr>
       <th>Ticker</th>
       <th>Year</th>
-      <th>Filing</th>
       <th>Time</th>
+      <th>Found</th>
+      <th>FileName</th>
+      <th>Downloaded</th>
     </tr>
   </thead>
 
   <tbody>
+    <% old_date = @searches.first.created_at.to_date %>
     <% @searches.each do |search| %>
+      <% new_date = search.created_at.to_date %>
+      <% if new_date != old_date %>
+        <tr class="date-breaker">
+          <td>  <%= new_date %>  </td>
+        </tr>
+        <% old_date = new_date %>
+      <% end %>
       <tr>
         <td><%= search.ticker %></td>
         <td><%= search.year %></td>
-        <td><%= search.filing %></td>
         <td><%= search.created_at %></td>
+        <td><%= search.file_found %></td>
+        <td><%= search.file_name %></td>
+        <td><%= search.file_downloaded %></td>
        </tr>
     <% end %>
   </tbody>

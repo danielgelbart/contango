@@ -82,8 +82,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # setting up mailer
-  config.action_mailer.default_url_options = {
-    :host => 'publicsecurities.com' }
+#  config.action_mailer.default_url_options = { :host => 'publicsecurities.com' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
