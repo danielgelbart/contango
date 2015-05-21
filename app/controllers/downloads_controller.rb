@@ -6,6 +6,7 @@ class DownloadsController < ApplicationController
     begin
       @search = Search.find(id)
     rescue ActiveRecord::RecordNotFound
+      puts "Could not find search with id #{id}"
       flash[:notice] = "OOPs cant get that"
       # redirect_to :action => 'error_page'
     end
@@ -15,6 +16,7 @@ class DownloadsController < ApplicationController
     file_name = @search.file_name
     @search.update_attribute(:file_downloaded, true)
 
+    puts "Going to "
     #supply file for download
     send_file(File.join(Rails.root,"public/statements/",file_name),
               filename: file_name)

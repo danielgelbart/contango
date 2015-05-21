@@ -1,14 +1,14 @@
 <p id="notice"><% notice %></p>
 <div class="results row center">
-  <%- if @down_link == "--"%>
-    Sorry, we couldn't get the statement for 
-    <%= @search.ticker %> for <%= @search.year %>
-    Please try again later, or contact us, and we will try to help.
-  <%- else %>
+  <%- if @search.file_found %>
     Found Spreadsheet for 
     <%= @search.ticker %> for <%= @search.year %> :
     <%= link_to 'Download', { :controller => "downloads", :action =>
     "download_statement", :search_id => @search.id}, type:'button', class:'btn-success' %>
+  <%- else %>
+    Sorry, we couldn't get the statement for 
+    <%= @search.ticker %> for <%= @search.year %>
+    Please try again later, or contact us, and we will try to help.
   <%- end %>
 </div>
 <div class="results row center">

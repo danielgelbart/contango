@@ -103,18 +103,19 @@ class Search < ActiveRecord::Base
 
     # handle file download
     if (success)
+      puts "Success! should update the DB"
       update( file_found: true, file_name: filname)
-      return filname
+      return true
     end
 
     # could not find file or download it
-    handle_bad_return
+    return handle_bad_return
   end
 
 
   def handle_bad_return
     update_attribute( :file_found, false)
-    return "--"
+    return false
   end
 
 end
