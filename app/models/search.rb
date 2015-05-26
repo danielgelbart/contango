@@ -61,6 +61,10 @@ class Search < ActiveRecord::Base
 
     puts search_url
     acn = ""
+    year_to_get = self.year + 1
+    year_to_get = self.year if before_november(stock.fyed)
+    puts "year to get is #{year_to_get}"
+
     # get acc number for relavent year
     doc.css('div#seriesDiv tr').each do |tr|
 
@@ -68,7 +72,9 @@ class Search < ActiveRecord::Base
       puts "iterating over trs"
       # getting year based on asumption that filing date is
       # in calender year following report year for
-      if tr.css('td')[3].text.first(4) == (self.year + 1).to_s
+      # unless fiscal_end_date < October
+
+      if tr.css('td')[3].text.first(4) == (year_to_get).to_s
         puts "found correct string"
         acn_str = tr.css('td')[2].text
         acn = acn_str.partition("Acc-no: ").last.partition("(34").first.gsub("-","")
@@ -117,5 +123,12 @@ class Search < ActiveRecord::Base
     update_attribute( :file_found, false)
     return false
   end
+
+  def before_november(fyed)
+    return false if fyed.size < 2
+    month = fyed.first(2).to_i
+    return month < 11
+  end
+
 
 end

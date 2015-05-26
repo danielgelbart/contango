@@ -1,5 +1,5 @@
 1) Add mailing capacity
 2) delete local downloaded files from when memory exceeds *** (start
 from oldest)
-3) Use fyed to determine year
-4) Add search by company name
+3) Add search by company name
+4) Add better change log to track updates for affect in reporting

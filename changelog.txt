@@ -1,0 +1,4 @@
+2015-05-26 
+1. If stock has fyed < November, year to look for is same as filing
+date
+2. Added 2015 to dorpdown off years to search for

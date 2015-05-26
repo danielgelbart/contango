@@ -23,7 +23,7 @@
     <div class="form-group "> 
       <label class="col-xs-5 control-label">Year</label> 
       <div class="col-xs-7">
-         <%= f.select(:year, options_for_select((2014.downto(1983)).to_a.map{|s|
+         <%= f.select(:year, options_for_select((2015.downto(1983)).to_a.map{|s|
                                            [s, s]}, selected:2014) ) %>
          <p class="help-block">Select year of annual report</p>
       </div>
