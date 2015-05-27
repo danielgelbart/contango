@@ -53,5 +53,5 @@ group :development, :test do
   gem 'foreman'
 end
 
-#gem 'mail_form'
+gem 'mail_form'
 gem 'simple_form' 
