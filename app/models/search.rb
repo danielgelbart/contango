@@ -14,6 +14,9 @@ class Search < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
+  validates :ticker, presence: true
+  validates :ticker, inclusion: { in: Stock.all.map(&:ticker) << "", message: "Unknown ticker symbol. Please enter a different ticker symbol" }
+
   def flip_x(string)
     if string.last == "x"
       return string.chop

@@ -24,5 +24,9 @@
 /.env
 Procfile
 
+#ignore my refrence text files
+/keywords/*
+TODO.txt
+
 #ignore downloaded local statements 
 /public/statements

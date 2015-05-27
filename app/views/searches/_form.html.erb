@@ -1,31 +1,34 @@
 <%= form_for(@search,  :html => { class: 'form-horizontal'} ) do |f| %>
 <fieldset>  
   <% if @search.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@search.errors.count, "error") %> prohibited this search from being saved:</h2>
-      <ul>
-      <% @search.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div id="error_explanation" class="center">
+      <h3><%= pluralize(@search.errors.count, "problem") %> prohibited
+      searching for statements: </h3> 
     </div>
   <% end %>
   <div id="search-form-body"> 
     <!-- legend> Search for any company's annual report</legend -->
-    <div class="form-group "> 
-      <label class="col-xs-5 control-label">Ticker</label> 
-      <div class="col-xs-7">
-        <%= f.collection_select(:ticker, Stock.order(:ticker), :ticker,
-                                             :ticker, selected:'IBM' ) %>
-       <p class="help-block">Select a company</p>
+    <div class="form-group row"> 
+      <label class="col-xs-5 control-label ticker">Ticker</label> 
+      <div class="col-xs-3">
+        <%= f.text_field :ticker, class: 'form-text-field', maxlength: 4, size: 5, placeholder:"IBM" %>
+        <% if f.object.errors[:ticker] %>
+          <span class="error-note">
+            <%= f.object.errors[:ticker].join(", ") %>
+          </span>
+        <% end %>
+        <!-- %= f.collection_select(:ticker, Stock.order(:ticker), :ticker,
+                                             :ticker, selected:'IBM' )
+                                             % -->
+       <p class="help-block">Enter a ticker symbol</p>
       </div>
     </div>
-    <div class="form-group "> 
+    <div class="form-group"> 
       <label class="col-xs-5 control-label">Year</label> 
       <div class="col-xs-7">
-         <%= f.select(:year, options_for_select((2015.downto(1983)).to_a.map{|s|
+         <%= f.select(:year, options_for_select((2015.downto(1990)).to_a.map{|s|
                                            [s, s]}, selected:2014) ) %>
-         <p class="help-block">Select year of annual report</p>
+         <p class="help-block">Select a year to get financials for</p>
       </div>
     </div>
     <div class="actions center">
