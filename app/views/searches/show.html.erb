@@ -1,16 +1,23 @@
 <p id="notice"><% notice %></p>
 <div class="results row center">
   <%- if @search.file_found %>
-    Found Spreadsheet for 
+    <p>Found Spreadsheet for 
     <%= @search.ticker %> for <%= @search.year %> :
-    <%= link_to 'Download', { :controller => "downloads", :action =>
-    "download_statement", :search_id => @search.id}, type:'button', class:'btn-success' %>
+    <%= link_to 'Download it Here', { :controller => "downloads", :action =>
+    "download_statement", :search_id => @search.id}, type:'button',    class:'btn-success' %></p>
+
   <%- else %>
-    Sorry, we couldn't get the statement for 
-    <%= @search.ticker %> for <%= @search.year %>
-    Please try again later, or contact us, and we will try to help.
+    <p>Sorry, we couldn't get the statement for 
+    <%= @search.ticker %> for <%= @search.year %>.
+    <%- if @search.year == 2015 %></p>
+      <p> The statements for 2015 might not be out yet. You can try looking
+    for 2014, or try again later.</p>
+    <%- else %>
+      <p>Please try again later, or contact us, and we will try to help.</p>
+    <% end %> 
   <%- end %>
 </div>
 <div class="results row center">
-  <%= link_to 'Get another Spreadsheet', "/download-excel-financial-statements" %>
+  <p><%= link_to 'Get another Excel Financial Statement',
+  "/download-excel-financial-statements" %></p>
 </div>

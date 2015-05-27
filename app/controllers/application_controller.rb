@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def redirect_to_named_route
-    redirect_to "/download-excel-financial-statements"
+    redirect_to "/download-excel-financial-statements" ,:status => 301
   end
 
 end
