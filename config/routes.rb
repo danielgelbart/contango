@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
   get 'downloads/download_statement' # :search_id => search.id
 
-  resources :searches
-  resources :stocks
+  resources :searches, only: [:new, :create, :show]
+  get 'whats_going_on' => 'searches#index'
+#  resources :stocks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'searches#new'
-  get 'excel_statements' => 'searches#new'
+  root to: 'application#redirect_to_named_route' # 'searches#new'
+  get 'download-excel-financial-statements' => 'searches#new'
 
   #for contact form
   get '/contact' => 'contacts#new'
