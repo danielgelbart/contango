@@ -14,8 +14,14 @@ class Search < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
+  before_validation :uppercase_ticker
+
   validates :ticker, presence: true
   validates :ticker, inclusion: { in: Stock.all.map(&:ticker) << "", message: "Unknown ticker symbol. Please enter a different ticker symbol" }
+
+  def uppercase_ticker
+    self.ticker.upcase!
+  end
 
   def flip_x(string)
     if string.last == "x"
