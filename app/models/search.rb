@@ -16,7 +16,7 @@ class Search < ActiveRecord::Base
 
   before_validation :uppercase_ticker
 
-  validates :ticker, presence: true
+  validates :ticker, presence: { message: "Please type in a ticker symbol" }
   validates :ticker, inclusion: { in: Stock.all.map(&:ticker) << "", message: "Unknown ticker symbol. Please enter a different ticker symbol" }
 
   def uppercase_ticker
