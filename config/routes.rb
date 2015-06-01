@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'static_pages/limit_access'
+  get 'oops' => 'static_pages#limit_access'
+
   get 'downloads/download_statement' # :search_id => search.id
 
   resources :searches, only: [:new, :create, :show]
   get 'whats_going_on' => 'searches#index'
-#  resources :stocks
+
+  #  resources :stocks
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

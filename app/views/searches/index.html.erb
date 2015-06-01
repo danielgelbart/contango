@@ -1,6 +1,6 @@
 <h1>Searches</h1>
 
-<table class="table-hover">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Ticker</th>
@@ -9,6 +9,7 @@
       <th>Found</th>
       <th>FileName</th>
       <th>Downloaded</th>
+      <th>IP</th>
     </tr>
   </thead>
 
@@ -25,10 +26,11 @@
       <tr>
         <td><%= search.ticker %></td>
         <td><%= search.year %></td>
-        <td><%= search.created_at %></td>
+        <td><%= search.created_at.time %></td>
         <td><%= search.file_found %></td>
         <td><%= search.file_name %></td>
         <td><%= search.file_downloaded %></td>
+        <td><%= search.request_ip %></td>
        </tr>
     <% end %>
   </tbody>
