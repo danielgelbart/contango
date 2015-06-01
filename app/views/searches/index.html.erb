@@ -19,7 +19,9 @@
       <% new_date = search.created_at.to_date %>
       <% if new_date != old_date %>
         <tr class="date-breaker">
-          <td>  <%= new_date %>  </td>
+          <td class="bold">  <%= new_date %>  </td>
+          <td> Total:  <%= Search.where(:created_at => new_date.beginning_of_day..new_date.end_of_day).size %>  </td>
+          <td> Downloads:  <%=  Search.where(:created_at => new_date.beginning_of_day..new_date.end_of_day, file_downloaded: true).size %>  </td>
         </tr>
         <% old_date = new_date %>
       <% end %>
