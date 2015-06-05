@@ -50,7 +50,7 @@ gem 'rails_12factor', group: :production
 gem "nokogiri"
 
 group :development, :test do
-  gem 'foreman'
+  gem 'mailcatcher'
 end
 
 #gem 'mail_form'

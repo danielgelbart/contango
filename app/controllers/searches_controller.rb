@@ -12,6 +12,8 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     # change this to generate file
+    ContactMailer.welcome_email("publicsecurities@yahoo.com").deliver
+
     @search.search_for_statement
   end
 
@@ -25,6 +27,7 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(search_params)
     @search.request_ip = request.remote_ip
+    # @search.location = get_location(request.remote_ip)
 
     if Search.where(["created_at > ? AND request_ip = ?", 1.days.ago, request.remote_ip ]).size >= 3
       redirect_to "/oops" and return
@@ -65,5 +68,11 @@ class SearchesController < ApplicationController
     def search_params
       params.require(:search).permit(:ticker, :year, :filing )
     end
+
+    def get_location(ip)
+
+
+    end
+
 
 end
