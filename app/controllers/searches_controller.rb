@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     # change this to generate file
-    ContactMailer.welcome_email("publicsecurities@yahoo.com").deliver
+#    ContactMailer.welcome_email("publicsecurities@yahoo.com").deliver
 
     @search.search_for_statement
   end
