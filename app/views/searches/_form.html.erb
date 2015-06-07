@@ -1,36 +1,37 @@
-<%= form_for(@search,  :html => { class: 'form-horizontal'} ) do |f| %>
+<%= form_for(@search,  :html => { class: 'form-horizontal my_form'} ) do |f| %>
 <fieldset>  
   <% if @search.errors.any? %>
     <div class="row">
-      <div class="col-xs-4"></div> 
-      <div id="error_explanation" class="center col-xs-3">
+      <div class="col-sm-7"></div> 
+      <div id="error_explanation" class="col-sm-5">
         <h3><%= pluralize(@search.errors.count, "error") %> encountered: </h3> 
       </div>
     </div>
   <% end %>
   <div id="search-form-body"> 
-    <!-- legend> Search for any company's annual report</legend -->
-    <div class="form-group row"> 
-      <label class="col-xs-5 control-label ticker">Ticker</label> 
-      <div class="col-xs-3">
+    <div class="form-group"> 
+      <label class="col-sm-4 control-label">Ticker</label> 
+      <div class="col-sm-8">
         <% if f.object.errors[:ticker] %>
           <span class="error-note">
             <%= f.object.errors[:ticker].join(", ") %>
           </span>
         <% end %>
-        <%= f.text_field :ticker, class: 'form-text-field', maxlength: 5, size: 5, placeholder:"IBM" %>
-        <div class="help-block">Enter a ticker symbol</div>
+        <%= f.text_field :ticker, class: 'form-text-field', maxlength:
+        5, size: 5, placeholder:"IBM" %>
+        <span class="help-block">Enter a ticker symbol</span>
       </div>
     </div>
     <div class="form-group"> 
-      <label class="col-xs-5 control-label">Year</label> 
-      <div class="col-xs-7">
+      <label class="col-sm-4 control-label" for="dropdown">Year</label> 
+      <div class="col-sm-8">
          <%= f.select(:year, options_for_select((2015.downto(1990)).to_a.map{|s|
-                                           [s, s]}, selected:2014) ) %>
-         <p class="help-block">Select a year to get financials for</p>
+                                           [s, s]}, selected:2014),
+                                           :id => "dropdown" ) %>
+         <span class="help-block">Select a year to get financials for</span>
       </div>
     </div>
-    <div class="actions center">
+    <div class="row actions center">
       <%= f.submit "Get the Spreadsheet!", :class=> "btn btn-primary" %>
     </div>
   </div>

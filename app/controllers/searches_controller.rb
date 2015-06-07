@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
     # @search.location = get_location(request.remote_ip)
 
     if Search.where(["created_at > ? AND request_ip = ?", 1.days.ago, request.remote_ip ]).size >= 3
-      redirect_to "/oops" and return
+      redirect_to "/later" and return
     end
 
     respond_to do |format|

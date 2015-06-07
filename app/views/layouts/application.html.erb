@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html land="en">
   <head>
     <title>Excel Spreadsheets of Financial Statements</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -16,9 +16,9 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    <div id="container">
+    <div class="container-fluid">
       <%= yield %>
-      <%= render 'layouts/footer' %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

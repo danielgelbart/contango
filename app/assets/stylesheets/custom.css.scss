@@ -14,22 +14,9 @@ $header-subtitle-font-family: $heading-font-family !default;
     text-align:left; /* Counteract to IE5/Win Hack */
     padding-top: 60px;
 }
-/*
-body {
-    background-color: #fff; 
-    color: #333; 
-    margin:50px 0px; padding:0px; /* Need to set body margin and padding to get consistency between browsers. 
-    text-align:center; /* Hack for IE5/Win
-    /* font-size: 1.7em; 
-    /* line-height: 1.7em;
-    /* padding-top: 60px;
-    font-family: $sans;
-}
-*/
-#container {
-    @include centeralize;       
-}
 
+/* Needed id header is FIXED, so that does not cover content
+body { padding-top: 50 px; }  */
 
 section {
   overflow: auto;

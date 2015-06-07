@@ -53,5 +53,3 @@ group :development, :test do
   gem 'mailcatcher'
 end
 
-#gem 'mail_form'
-#gem 'simple_form' 

@@ -1,28 +1,33 @@
 <p id="notice"><% notice %></p>
-<div class="results row center">
-  <%- if @search.file_found %>
-    <p>Found Spreadsheet for 
-    <%= @search.ticker %> for <%= @search.year %> :
-    <%= link_to 'Download it Here', { :controller => "downloads", :action =>
-    "download_statement", :search_id => @search.id}, type:'button',    class:'btn-success' %></p>
-  <%- else %>
-    <p>Sorry, we couldn't get the statement for 
-    <%= @search.ticker %> for <%= @search.year %>.
-    <%- if @search.year == 2015 %></p>
-      <p> The statements for 2015 might not be out yet. You can try looking
-    for 2014, or try again later.</p>
-    <%- else %>
-      <p>Please try again later, or contact us, and we will try to help.</p>
-    <% end %> 
-  <%- end %>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="row">
+      <p class="results">
+      <%- if @search.file_found %>
+        Found Spreadsheet for 
+        <%= @search.ticker %> for <%= @search.year %> 
+        <%= link_to 'Download it Here', { :controller => "downloads", :action => "download_statement", :search_id => @search.id}, type:'button', class:'btn-success' %>
+       <%- else %>
+       
+        Sorry, we couldn't get the statement for 
+        <%= @search.ticker %> for <%= @search.year %>.
+        <%- if @search.year == 2015 %>
+          The statements for 2015 might not be out yet. You can try
+        looking for 2014, or try again later.
+        <%- else %>
+          Please try again later, or contact us, and we will try to help.</p>
+        <% end %> 
+      <%- end %>
+    </div>
+    <div class="row">
+      <%= link_to 'Get another Excel Financial Statement', "/download-excel-financial-statements" %>
+    </div>
+    <div class="row social">  
+    </div>
+    </p>
+  </div>
 </div>
-<div class="results row center">
-  <p><%= link_to 'Get another Excel Financial Statement',
-  "/download-excel-financial-statements" %></p>
-</div>
-<div class="row center social">  
-  If you liked our site, let people know
-<div clas="row center"><%= render 'searches/twittershare' %></div>
-</div>
+<div class="col-sm-2"></div>
 
 

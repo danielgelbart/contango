@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'static_pages/limit_access'
-  get 'oops' => 'static_pages#limit_access'
+  get 'later' => 'static_pages#limit_access'
 
   get 'downloads/download_statement' # :search_id => search.id
 

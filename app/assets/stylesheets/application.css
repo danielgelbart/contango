@@ -13,4 +13,11 @@
  *= require_tree .
  *= require_self
  */
-/* The following centers body and container tags */
+
+.jumbotron {
+    position: relative;
+    background: url(<%= asset_path 'backpractice.jpg') center center;
+    background-size: cover;
+    overflow: hidden;
+}
+
