@@ -95,7 +95,7 @@ Rails.application.configure do
     enable_starttls_auto: true,
     authentication: "plain", #":cram_md5,
     domain: "gmail.com",
-    user_name: "publicsecurities@gmail.com",
+    user_name: "ppublicsecurites@gmail.com",
     password: ENV["GMAIL_PASSWORD"]
   }
 end
