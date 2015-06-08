@@ -90,7 +90,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.mail.yahoo.com",
     port: 587,
-    ssl: true,
+#    ssl: true,
     enable_starttls_auto: true,
     authentication: :cram_md5,
     domain: ENV["GMAIL_DOMAIN"],
