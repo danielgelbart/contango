@@ -54,4 +54,4 @@ group :development, :test do
 end
 
 gem 'mail_form'
-gem 'simple_form'
+
