@@ -82,15 +82,13 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # setting up mailer
-#  config.action_mailer.default_url_options = { :host => 'publicsecurities.com' }
-
+  config.action_mailer.default_url_options = { :host => 'publicsecurities.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
-=begin
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "smtp.yahoo.com",
     port: 587,
     domain: ENV["GMAIL_DOMAIN"],
     authentication: "plain",
@@ -98,5 +96,4 @@ Rails.application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
-=end
 end
