@@ -94,8 +94,8 @@ Rails.application.configure do
     port: 587,
     enable_starttls_auto: true,
     authentication: 'plain', #":cram_md5,
-    domain: ENV["GMAIL_DOMAIN"],
-    user_name: ENV["GMAIL_USERNAME"],
+    domain: "gmail.com",
+    user_name: "publicsecurities@gmail.com",
     password: ENV["GMAIL_PASSWORD"]
   }
 end
