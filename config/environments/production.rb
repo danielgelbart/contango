@@ -82,17 +82,18 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # setting up mailer
-  config.action_mailer.default_url_options = { :host => 'publicsecurities.com' }
+  config.action_mailer.default_url_options = { :host => 'publicsecurities.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-    address: "smtp.yahoo.com",
+    address: "smtp.mail.yahoo.com",
     port: 587,
-    domain: ENV["GMAIL_DOMAIN"],
-    authentication: "plain",
+    ssl: true,
     enable_starttls_auto: true,
+    authentication: :cram_md5,
+    domain: ENV["GMAIL_DOMAIN"],
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
