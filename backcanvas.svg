@@ -122,6 +122,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -413,6 +414,9 @@ u1Sitya4Oa53u0hPHarWsXzzTNnPJxWDdzlIyBWU5XdjohGyuZ+q3JkfYD1rV0CzyVyK5+IGe8G7
        height="565.66669"
        width="805"
        transform="matrix(-1,0,0,1,808.33332,0)"
-       style="filter:url(#filter3525)" />
+       style="filter:url(#filter3525)"
+       inkscape:export-filename="/home/daniel/rails/rails4/contango/backcanvas.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>
