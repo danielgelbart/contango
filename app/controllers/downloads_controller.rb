@@ -18,7 +18,7 @@ class DownloadsController < ApplicationController
 
     puts "Going to "
     #supply file for download
-    send_file(File.join(Rails.root,"public/statements/",file_name),
+    send_file(File.join(Rails.root,"statements/",file_name),
               filename: file_name)
 
     # do NOT render view after this method

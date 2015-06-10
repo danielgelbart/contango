@@ -5,6 +5,8 @@ class SearchesController < ApplicationController
   # GET /searches.json
   def index
     @searches = Search.order(:created_at)
+
+    get_location
   end
 
   # GET /searches/1
@@ -27,9 +29,9 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(search_params)
     @search.request_ip = request.remote_ip
-    # @search.location = get_location(request.remote_ip)
 
-    if Search.where(["created_at > ? AND request_ip = ?", 1.days.ago, request.remote_ip ]).size >= 3
+
+    if Search.where(["created_at > ? AND request_ip = ? AND file_downloaded = ?", 1.days.ago, request.remote_ip, true ]).size >= 3
       redirect_to "/later" and return
     end
 
@@ -69,10 +71,32 @@ class SearchesController < ApplicationController
       params.require(:search).permit(:ticker, :year, :filing )
     end
 
-    def get_location(ip)
+    def get_location
+      # num of days back to update
+      num = params[:num].to_i
 
+      # which searches to update?
+      searches_w_ip = Search.where(["created_at > ? AND ip_location IS NULL ", num.days.ago ])
 
+      searches_w_ip.each do |s|
+        ip = s.request_ip
+        url = "http://whatismyipaddress.com/ip/#{ip}"
+
+        begin
+          doc = Nokogiri::HTML(open(url))
+          isp = " " + doc.css('table')[0].css('tr')[3].text
+          ip_data_tabel = doc.css('table')[1]
+          str = ip_data_tabel.css('tr')[0..2].text
+          if str.match(/Longitude/).nil?
+            location = str.gsub(/(Country:|State\/Region:|City:)/," ") + isp
+          else
+            location = "weird-data" + isp
+          end
+        rescue
+          location = "no-data"
+        end
+        s.update_attributes(ip_location: location)
+      end
     end
-
 
 end

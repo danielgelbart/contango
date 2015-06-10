@@ -2,12 +2,16 @@
 #
 # Table name: searches
 #
-#  id         :integer          not null, primary key
-#  ticker     :string(255)
-#  year       :integer
-#  filing     :integer          default(0)
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer          not null, primary key
+#  ticker          :string(255)
+#  year            :integer
+#  filing          :integer          default(0)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  file_found      :boolean
+#  file_downloaded :boolean
+#  file_name       :string(255)
+#  request_ip      :string(255)
 #
 
 class Search < ActiveRecord::Base
@@ -47,7 +51,7 @@ class Search < ActiveRecord::Base
     puts "url is "+url
     puts "filname is "+filname
     if report.size > 0
-      open("public/statements/#{filname}","wb") do |file|
+      open("statements/#{filname}","wb") do |file|
            file << report
       end
 
@@ -63,58 +67,54 @@ class Search < ActiveRecord::Base
 
     return handle_bad_return if stock.nil?
 
-    # get search for 10-k search results page
-    search_url = "http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=#{stock.cik}&type=10-k&dateb=&owner=exclude&count=40"
-
-    doc = Nokogiri::XML(open(search_url))
-
-    puts search_url
-    acn = ""
     year_to_get = self.year + 1
     year_to_get = self.year if before_november(stock.fyed)
     puts "year to get is #{year_to_get}"
 
-    # get acc number for relavent year
-    doc.css('div#seriesDiv tr').each do |tr|
-
-      next if tr.css('td')[3].nil?
-      puts "iterating over trs"
-      # getting year based on asumption that filing date is
-      # in calender year following report year for
-      # unless fiscal_end_date < October
-
-      if tr.css('td')[3].text.first(4) == (year_to_get).to_s
-        puts "found correct string"
-        acn_str = tr.css('td')[2].text
-        acn = acn_str.partition("Acc-no: ").last.partition("(34").first.gsub("-","")
-        puts "fournd acn #{acn}"
-        break
-      end
-    end
-
-    # check that we succesfully got acn
-    return handle_bad_return if (acn == "")
-
-    xl_url = "http://www.sec.gov/Archives/edgar/data/#{stock.cik}/#{acn}/Financial_Report.xls"
-
     filname = "#{ticker}_#{year}.xls"
-
-    if year >= 2014
-      xl_url += "x"
-      filname += "x"
-    end
+    filname += "x" if year >= 2014
 
     success = false
-
     #check if file already exists
-    if File.exist?( File.join(Rails.root,"public/statements",filname) )
+    if File.exist?( File.join(Rails.root,"statements",filname) )
       success = true
-      puts "file found!!!!"
+      puts "file Already exists and found!!!!"
     end
 
-    if (!success)
+
+    if ! success
+      # get search for 10-k search results page
+      search_url = "http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=#{stock.cik}&type=10-k&dateb=&owner=exclude&count=40"
+      acn = ""
+      doc = Nokogiri::XML(open(search_url))
+      puts search_url
+
+      # get acc number for relavent year
+      doc.css('div#seriesDiv tr').each do |tr|
+
+        next if tr.css('td')[3].nil?
+        puts "iterating over trs"
+        # getting year based on asumption that filing date is
+        # in calender year following report year for
+        # unless fiscal_end_date < October
+
+        if tr.css('td')[3].text.first(4) == (year_to_get).to_s
+          puts "found correct string"
+          acn_str = tr.css('td')[2].text
+          acn = acn_str.partition("Acc-no: ").last.partition("(34").first.gsub("-","")
+          puts "found acn #{acn}"
+          break
+        end
+      end # getting acn for year
+
+      # check that we succesfully got acn
+      return handle_bad_return if (acn == "")
+
+      xl_url = "http://www.sec.gov/Archives/edgar/data/#{stock.cik}/#{acn}/Financial_Report.xls"
+      xl_url += "x" if year >= 2014
+
       success = download_to_local(xl_url,filname)
-    end
+    end # download of report to local
 
     # handle file download
     if (success)
@@ -138,6 +138,9 @@ class Search < ActiveRecord::Base
     month = fyed.first(2).to_i
     return month < 11
   end
+
+
+
 
 
 end

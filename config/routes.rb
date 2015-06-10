@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'downloads/download_statement' # :search_id => search.id
 
   resources :searches, only: [:new, :create, :show]
-  get 'whats_going_on' => 'searches#index'
+  get 'whats_going_on/:num' => 'searches#index'
 
   #  resources :stocks
 
