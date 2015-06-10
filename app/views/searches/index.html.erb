@@ -29,7 +29,7 @@
       <tr>
         <td><%= search.ticker %></td>
         <td><%= search.year %></td>
-        <td><%= search.created_at.time %></td>
+        <td><%= search.created_at.time.to_s[0..-5] %></td>
         <td><%= search.file_found %></td>
         <td><%= search.file_name %></td>
         <td><%= search.file_downloaded %></td>
