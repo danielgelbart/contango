@@ -84,13 +84,10 @@ class SearchesController < ApplicationController
 
         begin
           doc = Nokogiri::HTML(open(url))
-          isp = " " + doc.css('table')[0].css('tr')[3].text.first(20)
-          puts "isp is #{isp}"
+          isp = " " + doc.css('table')[0].css('tr')[3].text.first(25)
           ip_data_tabel = doc.css('table')[1]
           str = ip_data_tabel.css('tr')[0..2].text
-          puts "data is #{str}"
-          str.slice!(/Latitude.*/)
-          puts "sliced data is #{str}"
+          str.slice!(/Latitude(\n|.)*/)
           location = str.gsub(/(Country:|State\/Region:|City:)/," ") + isp
 
         rescue
