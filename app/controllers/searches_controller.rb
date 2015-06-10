@@ -76,7 +76,7 @@ class SearchesController < ApplicationController
       num = params[:num].to_i
 
       # which searches to update?
-      searches_w_ip = Search.where(["created_at > ? AND ip_location IS NULL ", num.days.ago ])
+      searches_w_ip = Search.where(["created_at > ? AND request_ip IS NOT NULL", num.days.ago ])
 
       searches_w_ip.each do |s|
         ip = s.request_ip
@@ -84,14 +84,11 @@ class SearchesController < ApplicationController
 
         begin
           doc = Nokogiri::HTML(open(url))
-          isp = " " + doc.css('table')[0].css('tr')[3].text
+          isp = " " + doc.css('table')[0].css('tr')[3].text.first(20)
           ip_data_tabel = doc.css('table')[1]
           str = ip_data_tabel.css('tr')[0..2].text
-          if str.match(/Longitude/).nil?
-            location = str.gsub(/(Country:|State\/Region:|City:)/," ") + isp
-          else
-            location = "weird-data" + isp
-          end
+          str.slice!(/Latitude.*/)
+          location = str.gsub(/(Country:|State\/Region:|City:)/," ") + isp
         rescue
           location = "no-data"
         end
