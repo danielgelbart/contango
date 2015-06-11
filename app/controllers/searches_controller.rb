@@ -89,9 +89,10 @@ class SearchesController < ApplicationController
           ip_data_tabel = doc.css('table')[1]
           str = ip_data_tabel.css('tr')[0..2].text
           puts "isp is #{isp}"
-          pust "data is #{str}"
+
+          puts "data is #{str}"
           str.slice!(/Latitude(\n|.)*/)
-          pust "Sliced data is #{str}"
+          puts "Sliced data is #{str}"
           location = str.gsub(/(Country:|State\/Region:|City:)/," ") + isp
 
         rescue
