@@ -1,0 +1,24 @@
+<div class="row center">
+  We have the financials for <%= @search.ticker %> for <%= @search.year %> on file. 
+<%= form_tag purchases_path do %>
+    <article>
+      <label class="amount">
+         <span></span>
+      </label>
+    </article>
+    <script src="https://checkout.stripe.com/checkout.js" 
+      class="stripe-button"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-label="Download for $<%= @payment_plan.amount %>"
+      data-description="<%= "#{@search.ticker} #{@search.year}" %> Financials"
+      data-panel-label="Download for" 	
+      data-amount="<%= @payment_plan.price %>">
+    </script>
+    <div class= "hidden">
+      <%= fields_for @purchase do |f| %>
+        <%= f.hidden_field :search_id, :value => @search.id  %>
+        <%= f.hidden_field :payment_plan_id, :value => @payment_plan.id  %>
+      <% end %>
+<% end %>
+</div>
+

@@ -1,0 +1,8 @@
+<div class="row center">
+  Found Spreadsheet for <%= @search.ticker %> for <%= @search.year %> 
+</div>
+<div class="row center">
+  <%= link_to 'Download it Here', { :controller => "downloads",
+        :action => "download_statement", :search_id => @search.id},
+        type:'button', class:'btn btn-success' %>
+</div>

@@ -53,5 +53,10 @@ group :development, :test do
   gem 'mailcatcher'
 end
 
+# for adding enviromnet variables
+gem 'dotenv-rails', :groups => [:development, :test], :require => 'dotenv/rails-now'
+
 gem 'mail_form'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 

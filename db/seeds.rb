@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+if (Stock.all.size < 1)
 
 Stock.create( 'name'=>'3M Company','ticker'=>'MMM','cik'=>66740,'fyed'=>'12-31')
 Stock.create( 'name'=>'A. M. Castle & Co.','ticker'=>'CAS','cik'=>18172,'fyed'=>'12-31')
@@ -1681,3 +1682,37 @@ Stock.create( 'name'=>'Zions Bancorp (UT)','ticker'=>'ZION','cik'=>109380,'fyed'
 Stock.create( 'name'=>'eBay Inc.','ticker'=>'EBAY','cik'=>1065088,'fyed'=>'12-31')
 Stock.create( 'name'=>'Michael Kors Holdings Ltd','ticker'=>'KORS','cik'=>1530721,'fyed'=>'03-29')
 Stock.create( 'name'=>'Schnitzer Steel Industries, Inc.','ticker'=>'SCHN','cik'=>912603,'fyed'=>'08-31')
+
+end #
+
+if PaymentPlan.all.size < 5
+  name = 'Free'
+  pp =  PaymentPlan.find_or_initialize_by(name: name)
+  pp.name = name
+  pp.price = 0
+  pp.save!
+
+  name = "1.99"
+  pp =  PaymentPlan.find_or_initialize_by(name: name)
+  pp.name = name
+  pp.price = 199
+  pp.save!
+
+  name = "2.99"
+  pp =  PaymentPlan.find_or_initialize_by(name: name)
+  pp.name = name
+  pp.price = 299
+  pp.save!
+
+  name = "3.99"
+  pp =  PaymentPlan.find_or_initialize_by(name: name)
+  pp.name = name
+  pp.price = 399
+  pp.save!
+
+  name = "5.99"
+  pp =  PaymentPlan.find_or_initialize_by(name: name)
+  pp.name = name
+  pp.price = 599
+  pp.save!
+end

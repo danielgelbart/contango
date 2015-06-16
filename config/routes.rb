@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :purchases
+
   get 'static_pages/limit_access'
   get 'later' => 'static_pages#limit_access'
 

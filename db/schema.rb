@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610082043) do
+ActiveRecord::Schema.define(version: 20150611133528) do
+
+  create_table "payment_plans", force: true do |t|
+    t.integer  "price"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchases", force: true do |t|
+    t.integer  "payment_plan_id"
+    t.integer  "search_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "searches", force: true do |t|
     t.string   "ticker"

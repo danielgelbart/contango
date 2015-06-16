@@ -1,0 +1,21 @@
+<!-- p id="notice"><%= notice %></p -->
+<h2>Thanks! you paid <strong>$<%= @purchase.payment_plan.amount %></strong>!</h2>
+<div class="row center">
+  Your file is available for download
+</div>
+<%= render 'downloads/download_statement' %>
+</br>
+
+<div class="row center">
+  <%= link_to 'Get another Excel Financial Statement', "/download-excel-financial-statements" %>
+</div>
+</br>
+<div class="row center">  
+   If you like our site, let people know
+</div>
+<div class="row center">
+   <%= render 'searches/twittershare' %>
+</div>
+
+
+

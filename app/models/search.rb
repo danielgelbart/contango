@@ -12,6 +12,7 @@
 #  file_downloaded :boolean
 #  file_name       :string(255)
 #  request_ip      :string(255)
+#  ip_location     :string(255)
 #
 
 class Search < ActiveRecord::Base

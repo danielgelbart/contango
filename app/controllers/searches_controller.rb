@@ -13,10 +13,10 @@ class SearchesController < ApplicationController
   # GET /searches/1.json
   def show
     @search = Search.find(params[:id])
-    # change this to generate file
-#    ContactMailer.welcome_email("publicsecurities@yahoo.com").deliver
-
     @search.search_for_statement
+
+    @purchase = Purchase.new
+    @payment_plan = PaymentPlan.find_by_name("5.99")
   end
 
   # GET /searches/new
