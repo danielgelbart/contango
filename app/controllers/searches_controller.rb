@@ -15,6 +15,7 @@ class SearchesController < ApplicationController
     @search = Search.find(params[:id])
     @search.search_for_statement
 
+    @stock = Stock.find_by_ticker(@search.ticker)
     @purchase = Purchase.new
     @payment_plan = PaymentPlan.find_by_name("5.99")
   end
@@ -35,14 +36,10 @@ class SearchesController < ApplicationController
       redirect_to "/later" and return
     end
 
-    respond_to do |format|
-      if @search.save
-        format.html { redirect_to @search, notice: 'Search was successfully created.' }
-        format.json { render :show, status: :created, location: @search }
-      else
-        format.html { render :new }
-        format.json { render json: @search.errors, status: :unprocessable_entity }
-      end
+    if @search.save
+      redirect_to @search, notice: 'Search was successfully created.'
+    else
+      render :new
     end
   end
 

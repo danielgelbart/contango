@@ -1,6 +1,7 @@
 <div class="row center">
-  Found Spreadsheet for <%= @search.ticker %> for <%= @search.year %> 
+  Found Spreadsheet for <%= @stock.name %> <strong>(<%= @search.ticker %>)</strong> for <%= @search.year %> 
 </div>
+</br>
 <div class="row center">
   <%= link_to 'Download it Here', { :controller => "downloads",
         :action => "download_statement", :search_id => @search.id},
