@@ -6,9 +6,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 
-    <meta name="description" content="Get Excel spreadsheets of
-    financial statements for any company. Search by company ticker and
-    year, and get the reports!">
+    <%= yield :metadesc %>
+    <%= yield :canonical %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= render 'layouts/shim' %>
