@@ -73,9 +73,10 @@ h2 {
   color: $gray-light;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 1.2em;
+  line-height: 1.5em;
 }
 
 /* header */
@@ -101,7 +102,7 @@ footer {
   padding-top: 5px;
   border-top: 2px solid #eaeaea;
   color: $gray-light;
-  font-size: 1.4em;
+  font-size: 1.1em;
   a {
     color: #555;
     &:hover {

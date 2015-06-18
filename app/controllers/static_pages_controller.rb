@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
 
+  def about
+
+  end
 
 
   def limit_access
