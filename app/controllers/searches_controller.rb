@@ -82,9 +82,9 @@ class SearchesController < ApplicationController
         begin
           puts "Going to get url #{url}"
           doc = Nokogiri::HTML(open(url))
-          isp = " " + doc.css('table')[0].css('tr')[3].text.first(25)
+          isp = " " + doc.css('table')[0].css('tr')[4].text.first(25)
           ip_data_tabel = doc.css('table')[1]
-          str = ip_data_tabel.css('tr')[0..2].text
+          str = ip_data_tabel.css('tr')[1..3].text
           puts "isp is #{isp}"
 
           puts "data is #{str}"

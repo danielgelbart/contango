@@ -1,5 +1,9 @@
 class DownloadsController < ApplicationController
 
+  def download_page
+    @parr = params[:pas_search_param]
+  end
+
   def download_statement
     # how to pass search id?
     id = params[:search_id]

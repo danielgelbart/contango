@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   resources :purchases
 
   get 'static_pages/limit_access'
-#  get 'static_pages/about'
+
   get 'about' => 'static_pages#about'
   get 'later' => 'static_pages#limit_access'
 
+  get 'downlaods/download_page' => 'downloads#download_page'
   get 'downloads/download_statement' # :search_id => search.id
 
   resources :searches, only: [:new, :create, :show]
