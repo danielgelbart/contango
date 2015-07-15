@@ -60,3 +60,5 @@ gem 'mail_form'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
+# blog engine
+gem 'monologue'
