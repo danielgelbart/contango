@@ -88,7 +88,7 @@
            height="434.28571"
            x="120"
            y="163.79076" /></flowRegion><flowPara
-         id="flowPara2999"></flowPara></flowRoot>    <path
+         id="flowPara2999" /></flowRoot>    <path
        sodipodi:type="arc"
        id="path3018"
        sodipodi:cx="260"
@@ -108,5 +108,33 @@
        d="m 261,278.36218 a 0.5,2 0 1 1 -1,0 0.5,2 0 1 1 1,0 z"
        transform="translate(56,-37)"
        style="fill:#ffffff" />
-  </g>
+    <rect
+       style="fill:#008000"
+       id="rect3062-8"
+       width="160"
+       height="124"
+       x="152.5"
+       y="347.86218"
+       inkscape:export-filename="/home/daniel/rails/rails4/contango/tiny_logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2985-4"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:74.00000095%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Courier 10 Pitch;-inkscape-font-specification:Courier 10 Pitch"
+       transform="matrix(3.1976649,0,0,3.7423852,-890.31484,-99.52755)"
+       inkscape:transform-center-x="-121.51125"
+       inkscape:transform-center-y="-93.654907"
+       inkscape:export-filename="/home/daniel/rails/rails4/contango/tiny_logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion2987-3"><rect
+           id="rect2989-4"
+           width="554.28571"
+           height="520"
+           x="74.285713"
+           y="126.6479"
+           style="line-height:74.00000095%" /></flowRegion><flowPara
+         id="flowPara3007-5"
+         style="text-align:center;letter-spacing:-3.33999872px;text-anchor:middle;fill:#ffffff">PS</flowPara></flowRoot>  </g>
 </svg>

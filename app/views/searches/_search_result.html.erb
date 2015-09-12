@@ -7,9 +7,9 @@
       <div class="row center">       
         Sorry, we couldn't get the statement for 
         <%= @search.ticker %> for <%= @search.year %>.
-        <%- if @search.year == 2015 %>
-          The statements for 2015 might not be out yet. You can try
-        looking for 2014, or try again later.
+        <%- if @search.year >= 2015 %> The statements for
+        <%= @search.year %> might not be out yet. You can try looking
+        for  <%= @search.year - 1 %>, or try again later.
         <%- else %>
           Please try again later, or contact us, and we will try to help.
         <% end %> 

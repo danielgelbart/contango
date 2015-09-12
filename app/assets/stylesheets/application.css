@@ -14,17 +14,10 @@
  *= require_self
  */
 
+
 .jumbotron {
     position: relative;
-    background: url(<%= asset_path 'backpractice.jpg') center center;
+    background: url(<%= asset_path 'backpractice.jpg' %>) center center;
     background-size: cover;
     overflow: hidden;
-}
-
-.navlogo {
-    letter-spacing: 0.4em;
-    font-variant: small-caps;
-    font-family: "Lato",sans-serif;
-    color: #FFF;
-    margin-left: 1.15em !important;
 }

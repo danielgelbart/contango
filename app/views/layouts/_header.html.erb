@@ -1,15 +1,21 @@
 
 <header class="navbar navbar-inverse">
   <div class="container-fluid">
-  <%= link_to "PublicSecurities.com",
-  "/download-excel-financial-statements", class: "navbar-brand navlogo" %>
+
+    <div class="navbar-header navbar-left">
+      <a class="navbar-brand" href="/download-excel-financial-statements">
+        <%= image_tag 'tiny_logo.png' %>
+      </a>
+      <%= link_to "PublicSecurities.com", "/download-excel-financial-statements", class: "navbar-brand navlogo" %>
+    </div>
+
     <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Download Excel Financial Statements",   "/download-excel-financial-statements" %></li>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Excel Financials",   "/download-excel-financial-statements" %></li>
         <li><%= link_to "Blog",   '/blog' %></li>
         <li><%= link_to "About",   '/about' %></li>
-        <li class="contact"><%= link_to "Contact", "/contact" %></li>
       </ul>
     </nav>
+
   </div>
 </header>

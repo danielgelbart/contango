@@ -1,3 +1,4 @@
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -42,41 +43,6 @@ textarea {
 
 .results {
   font-size: 1.5em;
-}
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h2 .green{
- color: green;
-}
-
-h1 {
-  font-size: 2.5em;
-  font-family: $heading-font-family;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2.2em;
-  font-family: $serif;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  font-style: italic; 
-  color: $gray-light;
-}
-
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 1.2em;
-  line-height: 1.5em;
 }
 
 /* header */
