@@ -14,6 +14,7 @@
  *= require_self
  */
 
+/*
 
 .jumbotron {
     position: relative;
@@ -21,3 +22,9 @@
     background-size: cover;
     overflow: hidden;
 }
+
+.logo-adjust-image {
+    background: #FFF image-url('tiny_logo.png');
+    background-size: cover;
+}
+*/
