@@ -32,9 +32,9 @@ class SearchesController < ApplicationController
     @search.request_ip = request.remote_ip
 
     # Removed limit of downloads, as payments have been added
-    # if Search.where(["created_at > ? AND request_ip = ? AND file_downloaded = ?", 1.days.ago, request.remote_ip, true ]).size >= 3
-    #  redirect_to "/later" and return
-    #end
+    if Search.where(["created_at > ? AND request_ip = ? AND file_downloaded = ?", 1.days.ago, request.remote_ip, true ]).size >= 3
+      redirect_to "/later" and return
+    end
 
     if @search.save
       redirect_to @search, notice: 'Search was successfully created.'
