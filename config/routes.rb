@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  # trying to resout seaches show page to
+  #root :to => "searches#show", :constraints => { :domain => "publicsecurities.com" }
+
+  #root :to => "searches#show"
+  # You can have the root of your site routed with "root"
+  root 'searches#new'
+  get 'download-excel-financial-statements' => 'searches#new'
+
   resources :purchases
 
   get 'static_pages/limit_access'
@@ -16,10 +25,6 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'searches#new'
-  get 'download-excel-financial-statements' => 'searches#new'
 
   #for contact form
   get '/contact' => 'contacts#new'

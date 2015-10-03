@@ -37,7 +37,7 @@ class SearchesController < ApplicationController
     end
 
     if @search.save
-      redirect_to @search, notice: 'Search was successfully created.'
+      redirect_to "http://publicsecurities.herokuapp.com/searches/#{@search.id}", notice: 'Search was successfully created.'
     else
       render :new
     end
