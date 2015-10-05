@@ -37,7 +37,7 @@ class SearchesController < ApplicationController
     end
 
     if @search.save
-      redirect_to "http://publicsecurities.herokuapp.com/searches/#{@search.id}", notice: 'Search was successfully created.'
+      https_switch
     else
       render :new
     end
@@ -58,6 +58,16 @@ class SearchesController < ApplicationController
   end
 
   private
+
+  def https_switch
+    if Rails.env.production?
+      redirect_to "https://publicsecurities.herokuapp.com/searches/#{@search.id}", notice: 'Search was successfully created.',  :protocol => 'https://'
+    else
+      redirect_to @search,  notice: 'Search was successfully created.'
+    end
+  end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_search
       @search = Search.find(params[:id])
