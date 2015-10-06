@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @historic_search_summary.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @historic_search_summary.end_date %>
+</p>
+
+<p>
+  <strong>Num searches:</strong>
+  <%= @historic_search_summary.num_searches %>
+</p>
+
+<p>
+  <strong>Num downloads:</strong>
+  <%= @historic_search_summary.num_downloads %>
+</p>
+
+<p>
+  <strong>Top searches:</strong>
+  <%= @historic_search_summary.top_searches %>
+</p>
+
+<p>
+  <strong>Top tickers:</strong>
+  <%= @historic_search_summary.top_tickers %>
+</p>
+
+<p>
+  <strong>Top years:</strong>
+  <%= @historic_search_summary.top_years %>
+</p>
+
+<%= link_to 'Edit', edit_historic_search_summary_path(@historic_search_summary) %> |
+<%= link_to 'Back', historic_search_summaries_path %>

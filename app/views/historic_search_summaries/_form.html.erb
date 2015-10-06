@@ -1,0 +1,17 @@
+<%= simple_form_for(@historic_search_summary) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :num_searches %>
+    <%= f.input :num_downloads %>
+    <%= f.input :top_searches %>
+    <%= f.input :top_tickers %>
+    <%= f.input :top_years %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

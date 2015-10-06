@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712122269) do
+ActiveRecord::Schema.define(version: 20151006124013) do
+
+  create_table "historic_search_summaries", force: true do |t|
+    t.date     "start_date"
+    t.integer  "days_duration", default: 7
+    t.integer  "week_of_month", default: 1
+    t.integer  "num_searches",  default: 0
+    t.integer  "num_downloads", default: 0
+    t.string   "top_searches"
+    t.string   "top_tickers"
+    t.string   "top_years"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "historic_search_summaries", ["start_date"], name: "index_historic_search_summaries_on_start_date", using: :btree
 
   create_table "monologue_posts", force: true do |t|
     t.boolean  "published"
