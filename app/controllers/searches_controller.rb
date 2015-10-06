@@ -46,10 +46,10 @@ class SearchesController < ApplicationController
   def most_searched
     ss = Search.all
     @num_searches = ss.size
-    @top_searches = hash_to_hist(ss.group_by{ |s| "#{s.ticker}_#{s.year}" }).first(10)
+    @top_searches = hash_to_hist(ss.group_by{ |s| "#{s.ticker}_#{s.year}" }).first(12)
 
-    @top_companies = hash_to_hist(ss.group_by{ |s| s.ticker }).first(10)
-    @top_years = hash_to_hist(ss.group_by{ |s| s.year }).first(10)
+    @top_companies = hash_to_hist(ss.group_by{ |s| s.ticker }).first(12)
+    @top_years = hash_to_hist(ss.group_by{ |s| s.year }).first(12)
   end
 
 
