@@ -1,0 +1,42 @@
+<div class="container">
+<div class="row">Number of Searhces in DB: <%= @num_searches %></div>
+<div class="row">
+
+  <div class="col-sm-4">
+    <table class="table table-bordered">
+      <h2>Top Searches</h2>
+      <% @top_searches.each do |k,v| %>
+      <tr>
+        <td><%= k %></td>
+        <td><%= v %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-sm-4">
+    <table class="table table-bordered">
+      <h2>Most Searched Tickers</h2>
+      <% @top_companies.each do |k,v| %>
+      <tr>
+        <td><%= k %></td>
+        <td><%= v %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-sm-4">
+    <table class="table table-bordered">
+      <h2>Most Searched Years</h2>
+      <% @top_years.each do |k,v| %>
+      <tr>
+        <td><%= k %></td>
+        <td><%= v %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>
+</div>

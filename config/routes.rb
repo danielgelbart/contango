@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  # trying to resout seaches show page to
-  #root :to => "searches#show", :constraints => { :domain => "publicsecurities.com" }
+  # trying to redirect back to my url after seraches
+#  root :to => "searches#new", :constraints => { :domain => "publicsecurities.com" }
 
-  #root :to => "searches#show"
+ # root :to => "searches#new"
   # You can have the root of your site routed with "root"
   root 'searches#new'
   get 'download-excel-financial-statements' => 'searches#new'
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :searches, only: [:new, :create, :show]
   get 'whats_going_on/:num' => 'searches#index'
 
+  get 'most_searched/1980' => 'searches#most_searched'
   #  resources :stocks
 
   # The priority is based upon order of creation: first created -> highest priority.

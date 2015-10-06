@@ -43,6 +43,16 @@ class SearchesController < ApplicationController
     end
   end
 
+  def most_searched
+    ss = Search.all
+    @num_searches = ss.size
+    @top_searches = hash_to_hist(ss.group_by{ |s| "#{s.ticker}_#{s.year}" }).first(10)
+
+    @top_companies = hash_to_hist(ss.group_by{ |s| s.ticker }).first(10)
+    @top_years = hash_to_hist(ss.group_by{ |s| s.year }).first(10)
+  end
+
+
   # PATCH/PUT /searches/1
   # PATCH/PUT /searches/1.json
   def update
@@ -107,6 +117,13 @@ class SearchesController < ApplicationController
         end
         s.update_attributes(ip_location: location)
       end
+    end
+
+    # map hash into a sorted historgram
+    # sorted by value, highest first
+    # histogram returned as a hash
+    def hash_to_hist(hhash)
+      hhash.map{ |k,v| [k, v.size] }.to_h.sort_by{|k,v| v}.reverse.to_h
     end
 
 end
