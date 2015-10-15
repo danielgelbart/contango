@@ -3,7 +3,7 @@
 # Table name: payment_plans
 #
 #  id         :integer          not null, primary key
-#  price      :float
+#  price      :integer
 #  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
