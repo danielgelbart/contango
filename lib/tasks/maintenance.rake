@@ -1,18 +1,22 @@
 namespace :searches do
 
   desc "Create historic searches summaries"
-  task :sum, [:start,:end,:span]  => :environment do |task,args|
+  task :sum  => :environment do |task,args|
+
+    #, [:start,:end,:span]
 
     #date format is "yyyy-mm-dd"
 
-
-    span = 7
-
+    span = 3
+#    span = args[:span] if args[:span] > 0
+=begin
+ #control searches time frame to handle
     b_point = "1980-02-01".to_date
     hss = HistoricSearchSummary.order("start_date").last #newest
-
     b_point = hss.end_date unless hss.nil?
     ss = Search.where(["created_at > ?", b_point]).sort_by{ |s| s.created_at }
+=end
+    ss = Search.all
 
     #splitt ss into the relavnet ordered groups
     #a hash { date=>[,,] , date=> [s,s,s,s]}
@@ -30,18 +34,31 @@ namespace :searches do
 
       nhr = HistoricSearchSummary.new
       nhr.start_date = g.first[0]
+      #nhr.end_date = g.last[0]
       nhr.days_duration = (g.last[0] - g.first[0]).to_i
       nhr.week_of_month = (g.first[0].day / 7) + 1
-      #  num_searches  :integer          default(0)
 
-      #  num_downloads :integer          default(0)
+      # unit all searches from group into single array
+      sarr = []
+      g.each do |gd|
+        sarr += gd[1]
+      end
 
-      #  top_searches  :string(255)
-      #  top_tickers   :string(255)
-      #  top_years     :string(255)
+      nhr.num_searches  = sarr.size
 
+      num_downs = 0
+      sarr.each do |s|
+        num_downs+= 1 if s.file_downloaded
+      end
+      nhr.num_downloads = num_downs
 
+      nhr.top_searches=hash_to_string(sarr.group_by{|s|"#{s.ticker}_#{s.year}"})
+      nhr.top_tickers = hash_to_string(sarr.group_by{ |s| "#{s.ticker}" })
+      nhr.top_years = hash_to_string(sarr.group_by{ |s| "#{s.year}" })
+
+      nhr.save
     end #group g
+
   end
 
   desc "Remove searches that are older than 'num' days old"
@@ -80,6 +97,9 @@ namespace :searches do
 
   end #geolocate
 
+  def hash_to_string(hhash)
+    hhash.map{ |k,v| [k, v.size] }.to_h.sort_by{|k,v| v}.reverse.to_h.first(5).map{|k,v| "#{k} = #{v}"}.join(' , ')
+  end
 
 
 end
