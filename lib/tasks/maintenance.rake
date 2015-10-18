@@ -7,7 +7,7 @@ namespace :searches do
 
     #date format is "yyyy-mm-dd"
 
-    span = 3
+    span = 7
 #    span = args[:span] if args[:span] > 0
 =begin
  #control searches time frame to handle
@@ -16,7 +16,7 @@ namespace :searches do
     b_point = hss.end_date unless hss.nil?
     ss = Search.where(["created_at > ?", b_point]).sort_by{ |s| s.created_at }
 =end
-    ss = Search.all
+    ss = Search.all.sort_by{ |s| s.created_at }
 
     #splitt ss into the relavnet ordered groups
     #a hash { date=>[,,] , date=> [s,s,s,s]}

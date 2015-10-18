@@ -1,11 +1,15 @@
 <h1>Historic Search & Downloads</h1>
 
+<div class="container">
+<div class="row">
+
 <table class="table table-bordered">
   <thead>
     <tr>
       <th>Start date</th>
-      <th>Num searches</th>
-      <th>Num downloads</th>
+      <th>Duration</th>
+      <th>Searches</th>
+      <th>Downloads</th>
       <th>Top searches</th>
       <th>Top tickers</th>
       <th>Top years</th>
@@ -16,6 +20,7 @@
     <% @historic_search_summaries.each do |historic_search_summary| %>
       <tr>
         <td><%= historic_search_summary.start_date %></td>
+        <td><%= historic_search_summary.days_duration %></td>
         <td><%= historic_search_summary.num_searches %></td>
         <td><%= historic_search_summary.num_downloads %></td>
         <td><%= historic_search_summary.top_searches %></td>
@@ -33,3 +38,6 @@
 <br>
 
 <%= link_to 'New Historic search summary', new_historic_search_summary_path %>
+
+</div>
+</div>

@@ -3,7 +3,7 @@ class HistoricSearchSummariesController < ApplicationController
 
 
   def index
-    @historic_search_summaries = HistoricSearchSummary.all
+    @historic_search_summaries = HistoricSearchSummary.all.sort_by{ |s| s.start_date }
   end
 
   def show
