@@ -9,7 +9,7 @@ namespace :searches do
   task :sum, [:mode]  => :environment do |task,args|
 
     mode = args[:mode]
-    span = 2 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 7
+    span = 7 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 7
     hss = HistoricSearchSummary.order("start_date").last #newest
     b_point = "1980-02-01".to_date
     b_point = hss.end_date unless hss.nil?
