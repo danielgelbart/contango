@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006124013) do
+ActiveRecord::Schema.define(version: 20151019103436) do
 
   create_table "historic_search_summaries", force: true do |t|
     t.date     "start_date"
@@ -91,6 +91,13 @@ ActiveRecord::Schema.define(version: 20151006124013) do
   end
 
   add_index "searches", ["request_ip"], name: "index_searches_on_request_ip", using: :btree
+
+  create_table "site_events", force: true do |t|
+    t.string   "event"
+    t.date     "event_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stocks", force: true do |t|
     t.string   "name"

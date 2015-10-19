@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :site_events
+
   resources :historic_search_summaries
 
   # trying to redirect back to my url after seraches

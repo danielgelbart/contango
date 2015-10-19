@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th>Start date</th>
-      <th>Duration</th>
+      <th>End date</th>
       <th>Searches</th>
       <th>Downloads</th>
       <th>Top searches</th>
@@ -20,7 +20,7 @@
     <% @historic_search_summaries.each do |historic_search_summary| %>
       <tr>
         <td><%= historic_search_summary.start_date %></td>
-        <td><%= historic_search_summary.days_duration %></td>
+        <td><%= historic_search_summary.end_date %></td>
         <td><%= historic_search_summary.num_searches %></td>
         <td><%= historic_search_summary.num_downloads %></td>
         <td><%= historic_search_summary.top_searches %></td>

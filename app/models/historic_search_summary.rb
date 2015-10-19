@@ -18,10 +18,20 @@
 class HistoricSearchSummary < ActiveRecord::Base
 
 
+  validates :start_date, uniqueness: true
+  validates :days_duration, presence: true
+  validates :num_searches, presence: true
+  validates :num_downloads, presence: true
+  validates :top_tickers, presence: true
 
-  def tops_to_hash(sstring)
-    sstring.split(";").map{ |s| [s.match(/\w+/)[0],s.match(/\d+/)[0]] }.to_h
+  def end_date
+    start_date + days_duration.days - 1
   end
 
+
+  def tops_to_hash(sstring)
+    # still need to remove '=' from matched regex
+    sstring.split(",").map{ |s| [s.match(/[\d\w_]+ =/)[0],s.match(/= \d+/)[0]] }.to_h
+  end
 
 end

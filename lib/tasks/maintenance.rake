@@ -1,22 +1,21 @@
 namespace :searches do
 
-  desc "Create historic searches summaries"
-  task :sum  => :environment do |task,args|
+  desc "Create historic searches summaries
+   0 == use all searches since last summary, exlude partial week
+   1 == use all searches since last summary until NOW
+   2 == use all searches in DB, exclude partial week
+"
 
-    #, [:start,:end,:span]
+  task :sum, [:mode]  => :environment do |task,args|
 
-    #date format is "yyyy-mm-dd"
-
-    span = 7
-#    span = args[:span] if args[:span] > 0
-=begin
- #control searches time frame to handle
-    b_point = "1980-02-01".to_date
+    mode = args[:mode]
+    span = 2 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 7
     hss = HistoricSearchSummary.order("start_date").last #newest
+    b_point = "1980-02-01".to_date
     b_point = hss.end_date unless hss.nil?
     ss = Search.where(["created_at > ?", b_point]).sort_by{ |s| s.created_at }
-=end
-    ss = Search.all.sort_by{ |s| s.created_at }
+
+    ss = Search.all.sort_by{ |s| s.created_at } if mode == 2
 
     #splitt ss into the relavnet ordered groups
     #a hash { date=>[,,] , date=> [s,s,s,s]}
@@ -25,8 +24,10 @@ namespace :searches do
     #an array of theses: [ [date,[s,s,s,s,,]] , [date,[s,s,s,s,]] ]
     # where each element represents exactly 'span' such dates
     ssg = ss_g_by_date.each_slice(span).to_a
-    ssg.pop if ssg.last.size < span
 
+    (ssg.pop if ssg.last.size < span) unless mode == 1
+
+    puts "Last search date for sumarizing is #{ssg.last.last[0]}"
     #for each group, create a new record
     # g is an array of size 'span' (i.e there are exatly 'span' dates in each elemtns of g
     # each element in g is of the form: [ [date,[s,s,s,s,,]] , [date,[s,s,s,s,]] ]
@@ -35,8 +36,10 @@ namespace :searches do
       nhr = HistoricSearchSummary.new
       nhr.start_date = g.first[0]
       #nhr.end_date = g.last[0]
-      nhr.days_duration = (g.last[0] - g.first[0]).to_i
+      nhr.days_duration = (g.last[0] - g.first[0]).to_i + 1
       nhr.week_of_month = (g.first[0].day / 7) + 1
+
+      next if !check_overlap(nhr)
 
       # unit all searches from group into single array
       sarr = []
@@ -56,8 +59,11 @@ namespace :searches do
       nhr.top_tickers = hash_to_string(sarr.group_by{ |s| "#{s.ticker}" })
       nhr.top_years = hash_to_string(sarr.group_by{ |s| "#{s.year}" })
 
-      nhr.save
+      if nhr.save
+        puts "Added historic record summary ending #{ g.last[0]}"
+      end
     end #group g
+
 
   end
 
@@ -101,5 +107,11 @@ namespace :searches do
     hhash.map{ |k,v| [k, v.size] }.to_h.sort_by{|k,v| v}.reverse.to_h.first(5).map{|k,v| "#{k} = #{v}"}.join(' , ')
   end
 
-
+  def check_overlap(nr)
+    ors = HistoricSearchSummary.all.order("start_date")
+    ors.each do |ol|
+      return false if (ol.start_date..ol.end_date).include? nr.start_date
+    end
+    return true
+  end
 end
