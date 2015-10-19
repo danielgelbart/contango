@@ -7,7 +7,7 @@
 
 <p>
   <strong>Event date:</strong>
-  <%= @site_event.event_date %>
+  <%= @site_event.time.to_s %>
 </p>
 
 <%= link_to 'Edit', edit_site_event_path(@site_event) %> |

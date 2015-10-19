@@ -69,6 +69,6 @@ class SiteEventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_event_params
-      params.require(:site_event).permit(:event, :event_date)
+      params.require(:site_event).permit(:event, :event_time)
     end
 end
