@@ -12,7 +12,7 @@
   <tbody>
     <% @site_events.each do |site_event| %>
       <tr>
-        <td><%= site_event.date %></td>
+        <td><%= site_event.time %></td>
         <td><%= site_event.event %></td>
         <td><%= link_to 'Show', site_event %></td>
         <td><%= link_to 'Edit', edit_site_event_path(site_event) %></td>
