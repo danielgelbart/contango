@@ -27,7 +27,11 @@ namespace :searches do
 
     (ssg.pop if ssg.last.size < span) unless mode == 1
 
+    begin
     puts "Last search date for sumarizing is #{ssg.last.last[0]}"
+    catch
+      puts "Could not print last search date for sumary"
+    end
     #for each group, create a new record
     # g is an array of size 'span' (i.e there are exatly 'span' dates in each elemtns of g
     # each element in g is of the form: [ [date,[s,s,s,s,,]] , [date,[s,s,s,s,]] ]

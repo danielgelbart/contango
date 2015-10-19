@@ -9,7 +9,7 @@
     <script src="https://checkout.stripe.com/checkout.js" 
       class="stripe-button"
       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-      data-label="Download for $<%= @payment_plan.amount %>"
+      data-label="Access for $<%= @payment_plan.amount %>"
       data-description="<%= "#{@search.ticker} #{@search.year}" %> Financials"
       data-panel-label="Download for" 	
       data-amount="<%= @payment_plan.price %>">
