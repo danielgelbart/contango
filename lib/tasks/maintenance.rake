@@ -29,7 +29,7 @@ namespace :searches do
 
     begin
     puts "Last search date for sumarizing is #{ssg.last.last[0]}"
-    catch
+    rescue
       puts "Could not print last search date for sumary"
     end
     #for each group, create a new record
